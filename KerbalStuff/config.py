@@ -2,7 +2,7 @@ import ast
 import logging.config
 import os
 from configparser import ConfigParser
-from distutils.util import strtobool
+from str2bool import str2bool
 from typing import Optional, Dict, Any
 
 # Load the software configuration
@@ -27,7 +27,7 @@ def _cfgi(k: str, default: int = 0) -> int:
 
 def _cfgb(k: str, default: bool = False) -> bool:
     val = _cfg(k)
-    return strtobool(val) == 1 if val is not None else default
+    return str2bool(val) if val is not None else default
 
 
 def _cfgd(k: str, default: Optional[Dict[str, str]] = None) -> Dict[str, str]:
