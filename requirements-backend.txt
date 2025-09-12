@@ -23,6 +23,7 @@ pymdown-extensions
 python-daemon
 redis
 requests
+str2bool
 SQLAlchemy>=1.4,<2 # 1.4 shows deprecation warnings for 2.0, 2.0 would break our backend as of now
 SQLAlchemy-Utils
 tinycss2
