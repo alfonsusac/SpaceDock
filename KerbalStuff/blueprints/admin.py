@@ -12,6 +12,7 @@ from sqlalchemy import or_, func
 from sqlalchemy.orm import Query
 import werkzeug.wrappers
 
+from ..notification import import_game_versions
 from ..common import adminrequired, with_session, TRUE_STR
 from ..config import _cfg
 from ..database import db
@@ -285,13 +286,15 @@ def notification_edit(notif_id: int) -> Union[str, werkzeug.wrappers.Response]:
         notif.change_url = request.form.get('change_url')
     else:
         # Create new row
-        db.add(Notification(name=request.form.get('name'),
-                            game_id=request.form.get('game_id'),
-                            builds_url=request.form.get('builds_url'),
-                            builds_url_format=request.form.get('builds_url_format'),
-                            builds_url_argument=request.form.get('builds_url_argument'),
-                            add_url=request.form.get('add_url'),
-                            change_url=request.form.get('change_url')))
+        notif = Notification(name=request.form.get('name'),
+                             game_id=request.form.get('game_id'),
+                             builds_url=request.form.get('builds_url'),
+                             builds_url_format=request.form.get('builds_url_format'),
+                             builds_url_argument=request.form.get('builds_url_argument'),
+                             add_url=request.form.get('add_url'),
+                             change_url=request.form.get('change_url'))
+        db.add(notif)
+    import_game_versions(notif)
     return redirect(url_for('admin.notifications'))
 
 
