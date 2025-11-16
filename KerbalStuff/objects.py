@@ -299,7 +299,7 @@ class Notification(Base):  # type: ignore
     game_id = Column(Integer, ForeignKey('game.id', ondelete='CASCADE'), nullable=False, index=True)
     game = relationship('Game', backref=backref('notifications', passive_deletes='all'), passive_deletes='all', foreign_keys=game_id)
     builds_url = Column(Unicode(1024))
-    builds_url_format = Column(Enum('plain_current', 'json_nested_dict_values', 'json_list', name='builds_url_format'))
+    builds_url_format = Column(Enum('plain_current', 'json_nested_dict_values', 'json_list', 'json_object', name='builds_url_format'))
     builds_url_argument = Column(Unicode(32))
     add_url = Column(Unicode(1024))
     change_url = Column(Unicode(1024))
