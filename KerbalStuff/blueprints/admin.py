@@ -288,6 +288,7 @@ def notification_edit(notif_id: int) -> Union[str, werkzeug.wrappers.Response]:
         # Create new row
         notif = Notification(name=request.form.get('name'),
                              game_id=request.form.get('game_id'),
+                             game=Game.query.get(request.form.get('game_id')),
                              builds_url=request.form.get('builds_url'),
                              builds_url_format=request.form.get('builds_url_format'),
                              builds_url_argument=request.form.get('builds_url_argument'),
