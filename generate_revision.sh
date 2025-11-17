@@ -16,12 +16,12 @@ case "$OSTYPE" in
         ;;
 esac
 
-docker-compose build backend
+docker compose build backend
 
-docker-compose up -d db
+docker compose up -d db
 
 source .env
-docker-compose run --rm --no-deps -u root \
+docker compose run --rm --no-deps -u root \
   -e CONNECTION_STRING="${CONNECTION_STRING}" \
   backend bash -c """
 set -e
