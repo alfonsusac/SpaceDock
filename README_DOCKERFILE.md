@@ -38,7 +38,7 @@ This will also forward port 5080 of the nginx container to port 5080 of your hos
 
 The following containers will be started:
 
-| docker-compose service name | container name | function |
+| docker compose service name | container name | function |
 | --------------------------- | -------------- | -------- |
 | backend              | spacedock_backend_1   | Flask development server |
 | db                   | spacedock_db_1        | PostgreSQL database |
@@ -47,7 +47,7 @@ The following containers will be started:
 | adminer              | spacedock_adminer_1   | Database management UI for development and debugging |
 
 To interact with a container using the `docker` command, you need to use the container name.
-To interact using `docker-compose`, you need to use the service name and be in the repository directory or any subdirectory.
+To interact using `docker compose`, you need to use the service name and be in the repository directory or any subdirectory.
 
 ## Connecting
 
@@ -61,11 +61,11 @@ User Credentials: user:development
 
 ## Starting and Stopping
 
-If you want to stop your container without losing any data, you can simply do `docker-compose stop`.
-Then, to start it back up, do `docker-compose up`.
+If you want to stop your container without losing any data, you can simply do `docker compose stop`.
+Then, to start it back up, do `docker compose up`.
 
 ## Odd and Ends
 
 ```sh
-docker-compose exec backend /bin/bash # Start a bash shell in the backend container
+docker compose exec backend /bin/bash # Start a bash shell in the backend container
 ```

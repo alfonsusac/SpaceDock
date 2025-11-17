@@ -90,6 +90,8 @@ def game_versions_from_notif(url: str, fmt: str, argument: str) -> Iterable[str]
             yield val
     elif fmt == 'json_list':
         yield from resp.json()
+    elif fmt == 'json_object':
+        yield resp.json()[argument]
     elif fmt == 'json_nested_dict_values':
         for _, full_version in resp.json()[argument].items():
             m = MAJOR_MINOR_PATCH_PATTERN.match(full_version)
