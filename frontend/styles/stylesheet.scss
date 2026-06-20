@@ -72,6 +72,22 @@ input[type="text"], input[type="password"], input[type="email"] {
 footer {
     padding-top: 20px;
     padding-bottom: 20px;
+    // Continues the home page's cyan bands (#register is #057893) so the
+    // bottom of the page reads as one piece. White links for contrast.
+    background-color: #057893;
+    color: #fff;
+
+    a {
+        color: #fff;
+
+        &:hover, &:focus {
+            color: #cdd6ee;
+        }
+    }
+
+    hr {
+        border-top-color: rgba(255, 255, 255, 0.25);
+    }
 }
 
 .error-banner {

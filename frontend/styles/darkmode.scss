@@ -2,14 +2,18 @@
 // toggle adds/removes (see navigation.scss and global.coffee). layout.html
 // sets the class before first paint so there's no flash on load.
 
-$dark-bg:           #12161d; // page background
+$dark-bg:           #12161d; // page background (also the black navbar)
 $dark-surface:      #1b212b; // panels, wells, cards, modals
 $dark-surface-alt:  #232a35; // striped rows, inputs, hover states
 $dark-border:       #2c3441;
 $dark-text:         #d3d7de;
 $dark-muted:        #aab1bc;
-$dark-link:         #6f93e6;
-$dark-cyan:         #2bc2ee; // brand cyan, brightened for the dark background
+
+// The only accent blue is the SpaceDock logo's blue; everything else is a
+// lighten()/darken() of it so the blue stays consistent across the site.
+$sd-blue:           #07acd2;               // logo blue
+$dark-link:         lighten($sd-blue, 10%); // links / focus / text accents
+$dark-cyan:         $dark-link;             // alias kept for button text
 
 // The theme draws every coloured button as a white "ghost" (white fill,
 // coloured text and border). On dark, fill them dark and keep the accent.
@@ -24,13 +28,6 @@ $dark-cyan:         #2bc2ee; // brand cyan, brightened for the dark background
         border-color: $accent;
         color: #fff;
     }
-}
-
-// Footer links are #777 from Bootstrap and hard to read on white; darken them.
-// (This file is the one stylesheet loaded on every page, so the light-mode fix
-// lives here too.)
-footer a {
-    color: #333;
 }
 
 html.dark-mode {
@@ -50,22 +47,30 @@ html.dark-mode {
         }
     }
 
-    // The footer links are small and sit on the darkest background, where the
-    // link blue is too dim, so give them a brighter, near-white colour.
-    footer a {
-        color: #c4cdde;
-
-        &:hover, &:focus {
-            color: #fff;
-        }
-    }
-
     hr {
         border-top-color: $dark-border;
     }
 
     h2 small, small, .text-muted {
         color: $dark-muted;
+    }
+
+    // Footer blends into the dark page; keep the links light.
+    footer {
+        background-color: $dark-bg;
+        color: $dark-muted;
+
+        a {
+            color: #c4cdde;
+
+            &:hover, &:focus {
+                color: #fff;
+            }
+        }
+
+        hr {
+            border-top-color: $dark-border;
+        }
     }
 
     .page-header {
@@ -91,7 +96,7 @@ html.dark-mode {
         }
     }
 
-    .btn-primary { @include ghost-btn(#07acd2, $dark-cyan); }
+    .btn-primary { @include ghost-btn($sd-blue, $dark-cyan); }
     .btn-success { @include ghost-btn(#20bb20); }
     .btn-info    { @include ghost-btn(#743af3, #9b7cf6); }
     .btn-danger  { @include ghost-btn(#b3182d, #e35d6a); }
@@ -334,18 +339,25 @@ html.dark-mode {
         background-color: $dark-bg;
     }
 
-    // Navbar stays brand blue but a notch darker so it's calmer on dark pages.
+    // Black navbar (and matching dropdown) so the logo blue stands out on it.
+    // A faint border keeps it separated from the (also dark) page below.
     .navbar-default {
-        background-color: #15294d;
+        background-color: $dark-bg;
+        background-image: none;
+        border-bottom: 1px solid $dark-border;
     }
     .dropdown-menu {
-        background-color: #15294d;
-        border-color: #15294d;
+        background-color: $dark-surface;
+        border-color: $dark-border;
     }
 
-    // Home page bands follow the darker navbar blue.
+    // Home page bands: neutral dark surface instead of big colour blocks, so the
+    // only blue on the page is the logo/accent blue.
     #players, #modders, #register {
-        background: #15294d;
+        background: $dark-surface;
+    }
+    #modders a {
+        color: $dark-link;
     }
 
     // Profile pages: the social-link rows and description sit in .info-list and
@@ -366,6 +378,13 @@ html.dark-mode {
     }
     .timeline-entry-inner[style*="F5F5F5"] {
         background-color: $dark-surface-alt !important;
+    }
+    // Use the one logo blue for the timeline marker/line (teal by default).
+    .timeline-centered:before {
+        background-color: $sd-blue;
+    }
+    .timeline-centered .timeline-entry .timeline-entry-inner .timeline-icon {
+        background-color: $sd-blue;
     }
 
     // Header image upload area (inline background-color: #ddd until an image is set)
