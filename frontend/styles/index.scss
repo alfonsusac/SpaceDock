@@ -125,9 +125,7 @@ h2 small {
     color: #333;
 }
 
-/* bands only show logged-out, so only there does the footer continue them
-   (#register's #057893). index.css is site-wide, hence the .home guard. */
-.home:not(.logged-in) footer {
+html:not(.dark-mode) .home:not(.logged-in) footer {
     background-color: #057893;
     color: #fff;
 
