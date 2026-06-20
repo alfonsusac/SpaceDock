@@ -1,22 +1,19 @@
-// Dark theme. Everything is scoped under html.dark-mode, which the navbar
-// toggle adds/removes (see navigation.scss and global.coffee). layout.html
-// sets the class before first paint so there's no flash on load.
+// Dark theme, all under html.dark-mode (toggled in global.coffee, set early in
+// layout.html to avoid a flash).
 
-$dark-bg:           #12161d; // page background (also the black navbar)
-$dark-surface:      #1b212b; // panels, wells, cards, modals
-$dark-surface-alt:  #232a35; // striped rows, inputs, hover states
+$dark-bg:           #12161d; // page + navbar
+$dark-surface:      #1b212b; // panels, cards, modals
+$dark-surface-alt:  #232a35; // rows, inputs, hover
 $dark-border:       #2c3441;
 $dark-text:         #d3d7de;
 $dark-muted:        #aab1bc;
 
-// The only accent blue is the SpaceDock logo's blue; everything else is a
-// lighten()/darken() of it so the blue stays consistent across the site.
-$sd-blue:           #07acd2;               // logo blue
-$dark-link:         lighten($sd-blue, 10%); // links / focus / text accents
-$dark-cyan:         $dark-link;             // alias kept for button text
+// One blue everywhere: the logo's, plus lighten/darken of it.
+$sd-blue:           #07acd2;
+$dark-link:         lighten($sd-blue, 10%);
+$dark-cyan:         $dark-link;
 
-// The theme draws every coloured button as a white "ghost" (white fill,
-// coloured text and border). On dark, fill them dark and keep the accent.
+// Coloured buttons are white "ghosts" by default; fill them dark instead.
 @mixin ghost-btn($accent, $text: $accent) {
     background-color: $dark-surface-alt;
     background-image: none;
@@ -55,7 +52,7 @@ html.dark-mode {
         color: $dark-muted;
     }
 
-    // Footer blends into the dark page; keep the links light.
+    // footer: dark page, light links
     footer {
         background-color: $dark-bg;
         color: $dark-muted;
@@ -82,7 +79,7 @@ html.dark-mode {
         color: $dark-muted;
     }
 
-    // Default buttons (bootstrap-theme paints a light gradient on these)
+    // bootstrap-theme gradients need background-image: none, not just a colour
     .btn-default {
         background-color: $dark-surface-alt;
         background-image: none;
@@ -102,8 +99,7 @@ html.dark-mode {
     .btn-danger  { @include ghost-btn(#b3182d, #e35d6a); }
     .btn-warning { @include ghost-btn(#b4a232, #cbb84a); }
 
-    // Panels and wells. bootstrap-theme adds light gradients here, so the
-    // background-image needs resetting too, not just the colour.
+    // panels + wells
     .panel {
         background-color: $dark-surface;
         border-color: $dark-border;
@@ -131,9 +127,7 @@ html.dark-mode {
         color: $dark-text;
     }
 
-    // Mod / game / pack listing boxes (light backgrounds set in listing.scss).
-    // Keep the subtle thumbnail outline light mode has, but no fill (a lighter
-    // fill on the dark page reads as a heavy box).
+    // listing boxes: outline only, no fill (a fill reads as a heavy box here)
     .thumbnail {
         background-color: transparent;
         border-color: $dark-border;
@@ -188,7 +182,7 @@ html.dark-mode {
         border-color: $dark-border;
         color: $dark-text;
     }
-    // The navbar stays blue, so keep its search field light rather than dark.
+    // search field rides on the navbar, so a translucent-white fill, not dark
     .navbar .search-box,
     .nav input {
         background-color: rgba(255, 255, 255, 0.18);
@@ -289,8 +283,7 @@ html.dark-mode {
         background-color: $dark-surface-alt;
         color: $dark-text;
     }
-    // The cm-s-paper theme colours several tokens near-black, and the cursor
-    // and selection default to dark too, all invisible on a dark editor.
+    // cm-s-paper paints tokens/cursor/selection near-black, invisible here
     .cm-s-paper .cm-variable,
     .cm-s-paper .cm-operator,
     .cm-s-paper .cm-property,
@@ -328,19 +321,22 @@ html.dark-mode {
         color: $dark-text;
     }
 
+    // match the description/changelog panel to the info cards' grey
+    .tab-content {
+        background-color: $dark-surface-alt;
+    }
+
     // Followed-mods list striping (profile/edit pages)
     .row.following-mod:nth-of-type(odd) {
         background-color: $dark-surface-alt;
     }
 
-    // Header/banner heroes: fall back to a dark colour so they never flash
-    // white when an image is missing or still loading.
+    // dark fallback so heroes don't flash white before the image loads
     .header {
         background-color: $dark-bg;
     }
 
-    // Black navbar (and matching dropdown) so the logo blue stands out on it.
-    // A faint border keeps it separated from the (also dark) page below.
+    // black navbar + dropdown, faint border to split it from the page
     .navbar-default {
         background-color: $dark-bg;
         background-image: none;
@@ -351,8 +347,7 @@ html.dark-mode {
         border-color: $dark-border;
     }
 
-    // Home page bands: neutral dark surface instead of big colour blocks, so the
-    // only blue on the page is the logo/accent blue.
+    // flatten the home page colour bands to plain surface
     #players, #modders, #register {
         background: $dark-surface;
     }
@@ -360,12 +355,13 @@ html.dark-mode {
         color: $dark-link;
     }
 
-    // Profile pages: the social-link rows and description sit in .info-list and
-    // light .timeline-label cards (some with an inline #F5F5F5 background).
+    // .info-list defaults to light text + a pale #dcdcdc border; tone both down
     .info-list {
         background-color: $dark-surface;
+        border-color: $dark-border;
+        color: $dark-text;
     }
-    // timeline.scss targets the label with a deep selector, so match it here.
+    // deep selector to match timeline.scss's specificity on the label
     .timeline-centered .timeline-entry .timeline-entry-inner .timeline-label {
         background-color: $dark-surface-alt;
 
@@ -379,7 +375,7 @@ html.dark-mode {
     .timeline-entry-inner[style*="F5F5F5"] {
         background-color: $dark-surface-alt !important;
     }
-    // Use the one logo blue for the timeline marker/line (teal by default).
+    // logo blue for the timeline marker + line
     .timeline-centered:before {
         background-color: $sd-blue;
     }
@@ -433,8 +429,7 @@ html.dark-mode {
         border-color: transparent;
     }
 
-    // chosen select boxes (create/edit pages). chosen styles the open/active
-    // states with higher-specificity selectors, so !important is needed.
+    // chosen selects; !important to beat its open/active state selectors
     .chosen-single,
     .chosen-choices,
     .chosen-container-active .chosen-single,

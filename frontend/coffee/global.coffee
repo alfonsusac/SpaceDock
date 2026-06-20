@@ -63,8 +63,7 @@ $('#alert-error').on 'close.bs.alert', () ->
     $('#alert-error').addClass 'hidden'
     return false
 
-# Dark mode toggle. Remembers the choice in localStorage; the initial class is
-# set in layout.html's <head> so there's no flash on load.
+# Dark mode toggle; choice saved in localStorage, applied early in layout.html
 darkModeToggle = document.getElementById('dark-mode-toggle')
 if darkModeToggle?
     root = document.documentElement

@@ -72,7 +72,7 @@
         <noscript><p><img src="//stats.52k.de/matomo.php?idsite=10&amp;rec=1" style="border:0;" alt="" /></p></noscript>
         <!-- End Piwik Code -->
     </head>
-    <body class="{% if user %}logged-in{% endif %}">
+    <body class="{% if user %}logged-in{% endif %}{% block body_class %}{% endblock %}">
         {% block nav %}
         <nav class="navbar navbar-default navbar-fixed-top {% if admin %}navbar-admin{% endif %}" role="navigation" >
             <div class="container">

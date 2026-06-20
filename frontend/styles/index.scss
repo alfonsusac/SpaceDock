@@ -67,7 +67,7 @@
     }
 }
 
-/* These bands share the navbar's brand blue so the home page reads as one piece. */
+/* brand-blue bands down the home page */
 #players {
     background: #1d3c8e;
     color: #fff;
@@ -123,4 +123,23 @@
 
 h2 small {
     color: #333;
+}
+
+/* bands only show logged-out, so only there does the footer continue them
+   (#register's #057893). index.css is site-wide, hence the .home guard. */
+.home:not(.logged-in) footer {
+    background-color: #057893;
+    color: #fff;
+
+    a {
+        color: #fff;
+
+        &:hover, &:focus {
+            color: #cdeaf2;
+        }
+    }
+
+    hr {
+        border-top-color: rgba(255, 255, 255, 0.25);
+    }
 }
