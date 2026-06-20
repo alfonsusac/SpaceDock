@@ -63,6 +63,25 @@ $('#alert-error').on 'close.bs.alert', () ->
     $('#alert-error').addClass 'hidden'
     return false
 
+# Dark mode toggle. Remembers the choice in localStorage; the initial class is
+# set in layout.html's <head> so there's no flash on load.
+darkModeToggle = document.getElementById('dark-mode-toggle')
+if darkModeToggle?
+    root = document.documentElement
+    updateDarkModeButton = () ->
+        active = root.classList.contains('dark-mode')
+        darkModeToggle.setAttribute('aria-pressed', active.toString())
+    updateDarkModeButton()
+    darkModeToggle.addEventListener('click', (e) ->
+        e.preventDefault()
+        active = root.classList.toggle('dark-mode')
+        try
+            localStorage.setItem('dark-mode', active.toString())
+        catch error
+            # localStorage can be blocked (private mode); just skip saving.
+        updateDarkModeButton()
+    , false)
+
 $('.search-tips-button').on 'click', (e) ->
     $('.search-tips').addClass 'search-tips-visible'
 
