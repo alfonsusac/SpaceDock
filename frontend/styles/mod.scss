@@ -51,6 +51,10 @@
     }
 }
 
+.timeline-centered:has(input):before {
+    bottom: 45px;
+}
+
 .mod-tabs {
     position: relative;
     display: flex;
