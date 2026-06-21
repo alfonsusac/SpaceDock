@@ -312,6 +312,21 @@ html.dark-mode {
         background-color: $dark-surface-alt;
     }
 
+    .alert {
+        background-color: $dark-surface;
+        border-color: $dark-border;
+        color: $dark-text;
+
+        .close {
+            color: $dark-text;
+            text-shadow: none;
+        }
+    }
+    .alert-info    { border-color: $sd-blue; }
+    .alert-success { border-color: #20bb20; }
+    .alert-warning { border-color: #b4a232; }
+    .alert-danger  { border-color: #b3182d; }
+
     // Search tips popover (rendered as an info alert)
     .search-tips.alert-info {
         background-color: $dark-surface;
