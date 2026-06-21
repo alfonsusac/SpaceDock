@@ -172,6 +172,13 @@
 @media (min-width: 768px) {
     .navbar-form {
         float: right;
+        margin-right: -9px;
+    }
+    .navbar-nav.navbar-right {
+        margin-left: 0;
+    }
+    .navbar-nav.navbar-right > li > a {
+        padding-left: 6px;
     }
 
     .navbar {
@@ -239,7 +246,7 @@
     background: none;
     border: 0;
     padding: 0;
-    margin-right: 10px;
+    margin-right: 6px;
     color: #fff;
     cursor: pointer;
     opacity: 0.85;
