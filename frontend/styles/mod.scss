@@ -30,6 +30,29 @@
     background: #333;
     color: #fff;
     padding-top: 10px;
+
+    .timeline-centered .timeline-entry .timeline-entry-inner:not(:has(input)) {
+        min-height: 58px;
+
+        .timeline-label {
+            box-sizing: border-box;
+            min-height: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding-top: 0;
+            padding-bottom: 0;
+
+            h2 {
+                margin-bottom: 0;
+                top: 0;
+            }
+        }
+    }
+}
+
+.timeline-centered:has(input):before {
+    bottom: 45px;
 }
 
 .mod-tabs {
@@ -46,9 +69,11 @@
 
 .tab-container {
     position: relative;
+    width: 100%;
 
     .mod-tabs {
         z-index: 1;
+        width: 100%;
     }
 
     &.no-sides {
