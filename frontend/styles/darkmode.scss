@@ -402,12 +402,16 @@ html.dark-mode {
     .timeline-centered .timeline-entry .timeline-entry-inner:has(input) .timeline-label {
         background-color: $dark-surface;
     }
+
     .timeline-entry-inner:has(input).timeline-end,
     .timeline-entry-inner:has(input).timeline-hide-end {
-        background-color: $dark-surface;
+        background-color: transparent;
     }
     // logo blue for the timeline marker + line
     .timeline-centered:before {
+        background-color: $sd-blue;
+    }
+    #changelog .timeline-centered:before {
         background-color: $sd-blue;
     }
     .timeline-centered .timeline-entry .timeline-entry-inner .timeline-icon {
@@ -467,8 +471,9 @@ html.dark-mode {
     .chosen-container-active.chosen-with-drop .chosen-single {
         background: $dark-surface-alt !important;
         background-image: none !important;
-        border-color: $dark-border;
+        border-color: $dark-border !important;
         color: $dark-text;
+        box-shadow: none !important;
     }
     .chosen-drop {
         background: $dark-surface !important;
