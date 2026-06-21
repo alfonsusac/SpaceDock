@@ -287,6 +287,10 @@ html.dark-mode {
         background-color: $dark-surface-alt;
         color: $dark-text;
     }
+
+    .CodeMirror pre {
+        background-color: transparent;
+    }
     // cm-s-paper paints tokens/cursor/selection near-black, invisible here
     .cm-s-paper .cm-variable,
     .cm-s-paper .cm-operator,
@@ -378,6 +382,14 @@ html.dark-mode {
     }
     .timeline-entry-inner[style*="F5F5F5"] {
         background-color: $dark-surface-alt !important;
+    }
+  
+    .timeline-centered .timeline-entry .timeline-entry-inner:has(input) .timeline-label {
+        background-color: $dark-surface;
+    }
+    .timeline-entry-inner:has(input).timeline-end,
+    .timeline-entry-inner:has(input).timeline-hide-end {
+        background-color: $dark-surface;
     }
     // logo blue for the timeline marker + line
     .timeline-centered:before {

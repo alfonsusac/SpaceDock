@@ -31,21 +31,22 @@
     color: #fff;
     padding-top: 10px;
 
-    .timeline-centered .timeline-entry .timeline-entry-inner {
+    .timeline-centered .timeline-entry .timeline-entry-inner:not(:has(input)) {
         min-height: 58px;
-    }
-    .timeline-centered .timeline-entry .timeline-entry-inner .timeline-label {
-        box-sizing: border-box;
-        min-height: 40px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        padding-top: 0;
-        padding-bottom: 0;
 
-        h2 {
-            margin-bottom: 0;
-            top: 0;
+        .timeline-label {
+            box-sizing: border-box;
+            min-height: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding-top: 0;
+            padding-bottom: 0;
+
+            h2 {
+                margin-bottom: 0;
+                top: 0;
+            }
         }
     }
 }
@@ -60,13 +61,6 @@
         font-size: 14pt;
         border: none;
     }
-}
-
-// Tab bar and the panel below share .col-lg-5 > .container; zero its padding so
-// both fill the column identically and the bar lines up with the panel.
-.col-lg-5 > .container {
-    padding-left: 0;
-    padding-right: 0;
 }
 
 .tab-container {
