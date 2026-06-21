@@ -63,7 +63,7 @@ $('#alert-error').on 'close.bs.alert', () ->
     $('#alert-error').addClass 'hidden'
     return false
 
-# Dark mode toggle; choice saved in localStorage, applied early in layout.html
+# Dark mode toggle choice saved in localStorage, aplied early in layout.html
 darkModeToggle = document.getElementById('dark-mode-toggle')
 if darkModeToggle?
     root = document.documentElement
@@ -77,7 +77,7 @@ if darkModeToggle?
         try
             localStorage.setItem('dark-mode', active.toString())
         catch error
-            # localStorage can be blocked (private mode); just skip saving.
+            # localStorage can be blocked (private mode)
         updateDarkModeButton()
     , false)
 

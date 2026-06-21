@@ -230,13 +230,11 @@
     float: left;
 }
 
-/* Dark mode toggle; moon/sun stacked and cross-faded on swap */
 .dark-mode-toggle {
     position: relative;
     width: 22px;
     height: 22px;
     display: inline-block;
-    /* line up with the search box (Bootstrap puts it on vertical-align: middle) */
     vertical-align: middle;
     background: none;
     border: 0;
@@ -261,7 +259,6 @@
         transition: opacity 0.2s ease-in-out;
     }
 
-    /* moon visible in light mode, sun in dark mode (flipped below) */
     .icon-moon { opacity: 1; }
     .icon-sun { opacity: 0; }
 }

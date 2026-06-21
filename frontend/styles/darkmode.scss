@@ -70,6 +70,10 @@ html.dark-mode {
         }
     }
 
+    .home:not(.logged-in) footer {
+        background-color: $dark-surface;
+    }
+
     .page-header {
         border-bottom-color: $dark-border;
     }

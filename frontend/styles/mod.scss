@@ -62,11 +62,20 @@
     }
 }
 
+// Tab bar and the panel below share .col-lg-5 > .container; zero its padding so
+// both fill the column identically and the bar lines up with the panel.
+.col-lg-5 > .container {
+    padding-left: 0;
+    padding-right: 0;
+}
+
 .tab-container {
     position: relative;
+    width: 100%;
 
     .mod-tabs {
         z-index: 1;
+        width: 100%;
     }
 
     &.no-sides {
