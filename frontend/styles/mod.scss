@@ -79,6 +79,8 @@
         flex: 1 1 auto;
         min-width: 0;
 
+        // Drop the default h2 margins so the caption + input block is the
+        // full height of the row
         h2 {
             margin: 0;
         }
