@@ -45,10 +45,15 @@
         {% endblock %}
         <link href="/static/darkmode.css" rel="stylesheet">
         <script>
-            // Set the saved theme before the page renders so it doesn't flash.
+            // Set the theme before the page renders so it doesn't flash
+            // An explicit toggle choice wins otherwise follow the OS theme
             (function () {
                 try {
-                    if (localStorage.getItem('dark-mode') === 'true') {
+                    var stored = localStorage.getItem('dark-mode');
+                    var dark = stored === null
+                        ? window.matchMedia('(prefers-color-scheme: dark)').matches
+                        : stored === 'true';
+                    if (dark) {
                         document.documentElement.classList.add('dark-mode');
                     }
                 } catch (e) { /* localStorage unavailable (e.g. private mode) */ }
