@@ -371,6 +371,7 @@ curl "https://spacedock.info/api/search/mod?query=FAR"
 ]
 ```
 </details>
+<br />
 
 ### GET /api/search/user
 
@@ -402,6 +403,7 @@ curl "https://spacedock.info/api/search/user?query=sircmpwn"
 ]
 ```
 </details>
+<br />
 
 ## Users
 
@@ -446,6 +448,7 @@ curl "https://spacedock.info/api/user/Xaiier"
 <!-- Missing: Change User Password  -->
 <!-- Missing: Delete User  -->
 <!-- Missing: Update User Background  -->
+<br />
 
 ## Mods
 
@@ -493,6 +496,7 @@ curl "https://spacedock.info/api/mod/21"
 ```
 </details>
 
+<br />
 
 ### GET /api/mod/\<mod_id>/latest
 
@@ -520,6 +524,7 @@ curl "https://spacedock.info/api/mod/21/latest"
 ```
 </details>
 
+<br />
 
 ### POST /api/mod/create
 
@@ -563,6 +568,7 @@ Creates a new mod. **Requires authentication**.
 This creates an unpublished mod. You must log into the actual site to publish
 your mod.
 
+<br />
 
 ### POST /api/mod/\<mod_id>/update
 
@@ -594,12 +600,14 @@ Publishes an update to an existing mod. **Requires authentication**.
 <!-- MISSING: Reject mod Grant -->
 <!-- MISSING: Set Mod Default Version -->
 <!-- MISSING: Update Mod Edit Version -->
+<br />
 
 ## Games
 
 ### GET /api/kspversions
 
 This is deprecated. Use **/api/games** to find the ID of a game, then **/api/&lt;gameid&gt;/versions** to get its versions.
+<br />
 
 ### GET /api/games
 
@@ -630,6 +638,7 @@ This will list the available games and their ids.
 ```
 </details>
 
+<br />
 
 ### GET /api/\<game_id>/versions
 
@@ -658,6 +667,7 @@ For KSP the response is the same as `/api/kspversions`
 ```
 </details>
 
+<br />
 
 ### GET /api/\<game_id>/notifications
 
@@ -683,6 +693,7 @@ curl "https://spacedock.info/api/\<gameid>/notifications"
 ```
 </details>
 
+<br />
 
 ### POST /api/download_counts
 
@@ -716,3 +727,4 @@ This will return download counts for the specified mods.
 </details>
 
 
+<br />
