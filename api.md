@@ -70,10 +70,7 @@ curl -F username=SirCmpwn -F password=example -c ./cookies "https://spacedock.in
 | 403 | User is not confirmed |
 </details>
 
-
-
-
-
+<br />
 
 ## Browse
 
@@ -81,7 +78,7 @@ You can browse the site without authentication.
 
 
 
-#### `GET /api/browse`
+#### GET /api/browse
 
 Gets mods sorted by selected conditions
 
@@ -139,7 +136,7 @@ If `game_version_id` is present, `game_id` and `game_version` will be ignored.
 
 
 
-#### `GET /api/browse/new`
+#### GET /api/browse/new
 
 Gets the newest mods on the site.
 
@@ -186,7 +183,7 @@ If `game_version_id` is present, `game_id` and `game_version` will be ignored.
 </details>
 
 
-#### `GET /api/browse/featured`
+#### GET /api/browse/featured
 
 Gets the latest featured mods on the site.
 
@@ -228,7 +225,7 @@ curl "https://spacedock.info/api/browse/featured"
 ```
 </details>
 
-#### `GET /api/browse/top`
+#### GET /api/browse/top
 
 Gets the most popular mods on the site.
 
@@ -270,7 +267,7 @@ curl "https://spacedock.info/api/browse/top"
 </details>
 
 
-#### `GET /api/typeahead/mod`
+#### GET /api/typeahead/mod
 
 Endpoint used to provide typeahead functionality when searching a mod
 
