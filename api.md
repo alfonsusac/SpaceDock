@@ -13,7 +13,7 @@ of choice probably handles that for you. All responses are JSON.
 Please set your user agent to something that describes who you are and how to
 contact the person operating the service.
 
-### Errors
+#### Errors
 
 All requests that might fail include an `error` property in the response, which
 is a boolean that will be true if the request failed. If the request failed, a
@@ -37,7 +37,7 @@ requests.
 
 
 
-### POST /api/login
+#### POST /api/login
 
 Logs into Spacedock.
 
@@ -81,7 +81,7 @@ You can browse the site without authentication.
 
 
 
-### GET /api/browse
+#### GET /api/browse
 
 Gets mods sorted by selected conditions
 
@@ -139,7 +139,7 @@ If `game_version_id` is present, `game_id` and `game_version` will be ignored.
 
 
 
-### GET /api/browse/new
+#### GET /api/browse/new
 
 `GET /api/browse/new?page=<integer>`
 
@@ -188,7 +188,7 @@ If `game_version_id` is present, `game_id` and `game_version` will be ignored.
 </details>
 
 
-### GET /api/browse/featured
+#### GET /api/browse/featured
 
 `GET /api/browse/featured?page=<integer>`
 
@@ -232,7 +232,7 @@ curl "https://spacedock.info/api/browse/featured"
 ```
 </details>
 
-### GET /api/browse/top
+#### GET /api/browse/top
 
 `GET /api/browse/top?page=<integer>`
 
@@ -280,7 +280,7 @@ curl "https://spacedock.info/api/browse/top"
 
 You can search the site without authentication.
 
-### GET /api/search/mod
+#### GET /api/search/mod
 
 `GET /api/search/mod?query=<name>`
 
@@ -323,7 +323,7 @@ curl "https://spacedock.info/api/search/mod?query=FAR"
 ```
 </details>
 
-### GET /api/search/user
+#### GET /api/search/user
 
 `GET /api/search/user?query=<name>`
 
@@ -360,7 +360,7 @@ curl "https://spacedock.info/api/search/user?query=sircmpwn"
 
 You can query the API for information on individual public users.
 
-### GET /api/user/<username>
+#### GET /api/user/<username>
 
 `GET /api/user/<username>`
 
@@ -408,7 +408,7 @@ You can query the API for information on a specific mod, a specific version, and
 so on. This could be useful, for example, to implement an update checker. You can
 also use the API to create new mods or update existing ones.
 
-### GET /api/mod/<mod_id>
+#### GET /api/mod/<mod_id>
 
 `GET /api/mod/<mod_id>`
 
@@ -449,7 +449,7 @@ curl "https://spacedock.info/api/mod/21"
 </details>
 
 
-### GET /api/mod/<mod_id>/latest
+#### GET /api/mod/<mod_id>/latest
 
 `GET /api/mod/<mod_id>/latest` 
 
@@ -476,7 +476,7 @@ curl "https://spacedock.info/api/mod/21/latest"
 </details>
 
 
-### POST /api/mod/create
+#### POST /api/mod/create
 
 Creates a new mod. **Requires authentication**.
 
@@ -519,7 +519,7 @@ This creates an unpublished mod. You must log into the actual site to publish
 your mod.
 
 
-### POST /api/mod/<mod_id>/update
+#### POST /api/mod/<mod_id>/update
 
 Publishes an update to an existing mod. **Requires authentication**.
 
@@ -552,11 +552,11 @@ Publishes an update to an existing mod. **Requires authentication**.
 
 ## Games
 
-### GET /api/kspversions
+#### GET /api/kspversions
 
 This is deprecated. Use **/api/games** to find the ID of a game, then **/api/&lt;gameid&gt;/versions** to get its versions.
 
-### GET /api/games
+#### GET /api/games
 
 This will list the available games and their ids.
 
@@ -586,7 +586,7 @@ This will list the available games and their ids.
 </details>
 
 
-### GET /api/<game_id>/versions
+#### GET /api/<game_id>/versions
 
 This will list the available versions of a game.
 For KSP the response is the same as `/api/kspversions`
@@ -614,7 +614,7 @@ For KSP the response is the same as `/api/kspversions`
 </details>
 
 
-### GET /api/<game_id>/notifications
+#### GET /api/<game_id>/notifications
 
 Returns the notifications that can be enabled for mods from this game.
 
@@ -639,7 +639,7 @@ curl "https://spacedock.info/api/<gameid>/notifications"
 </details>
 
 
-### POST /api/download_counts
+#### POST /api/download_counts
 
 This will return download counts for the specified mods.
 
