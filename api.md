@@ -29,13 +29,14 @@ is a boolean that will be true if the request failed. If the request failed, a
   ```
 </details>
 
+<br />
+
+
 ## Authentication
 
 Some endpoints require authentication. To authenticate, use the login endpoint
 and you will be given a cookie, which you should include in all subsequent
 requests.
-
-
 
 #### POST /api/login
 
@@ -76,9 +77,7 @@ curl -F username=SirCmpwn -F password=example -c ./cookies "https://spacedock.in
 
 You can browse the site without authentication.
 
-
-
-#### GET /api/browse
+### GET /api/browse
 
 Gets mods sorted by selected conditions
 
@@ -136,7 +135,7 @@ If `game_version_id` is present, `game_id` and `game_version` will be ignored.
 
 
 
-#### GET /api/browse/new
+### GET /api/browse/new
 
 Gets the newest mods on the site.
 
@@ -183,7 +182,7 @@ If `game_version_id` is present, `game_id` and `game_version` will be ignored.
 </details>
 
 
-#### GET /api/browse/featured
+### GET /api/browse/featured
 
 Gets the latest featured mods on the site.
 
@@ -225,7 +224,7 @@ curl "https://spacedock.info/api/browse/featured"
 ```
 </details>
 
-#### GET /api/browse/top
+### GET /api/browse/top
 
 Gets the most popular mods on the site.
 
@@ -267,7 +266,7 @@ curl "https://spacedock.info/api/browse/top"
 </details>
 
 
-#### GET /api/typeahead/mod
+### GET /api/typeahead/mod
 
 Endpoint used to provide typeahead functionality when searching a mod
 
@@ -327,7 +326,7 @@ curl "https://spacedock.info/api/typeahead/mod?game_id=22409&query=Compe"
 
 You can search the site without authentication.
 
-#### GET /api/search/mod
+### GET /api/search/mod
 
 Searches the site for mods.
 
@@ -368,7 +367,7 @@ curl "https://spacedock.info/api/search/mod?query=FAR"
 ```
 </details>
 
-#### GET /api/search/user
+### GET /api/search/user
 
 Searches the site for public users.
 
@@ -403,7 +402,7 @@ curl "https://spacedock.info/api/search/user?query=sircmpwn"
 
 You can query the API for information on individual public users.
 
-#### GET /api/user/\<username>
+### GET /api/user/\<username>
 
 Returns information about a specific user.
 
@@ -449,7 +448,7 @@ You can query the API for information on a specific mod, a specific version, and
 so on. This could be useful, for example, to implement an update checker. You can
 also use the API to create new mods or update existing ones.
 
-#### GET /api/mod/\<mod_id>
+### GET /api/mod/\<mod_id>
 
 `GET /api/mod/\<mod_id>`
 
@@ -490,7 +489,7 @@ curl "https://spacedock.info/api/mod/21"
 </details>
 
 
-#### GET /api/mod/\<mod_id>/latest
+### GET /api/mod/\<mod_id>/latest
 
 `GET /api/mod/\<mod_id>/latest` 
 
@@ -517,7 +516,7 @@ curl "https://spacedock.info/api/mod/21/latest"
 </details>
 
 
-#### POST /api/mod/create
+### POST /api/mod/create
 
 Creates a new mod. **Requires authentication**.
 
@@ -560,7 +559,7 @@ This creates an unpublished mod. You must log into the actual site to publish
 your mod.
 
 
-#### POST /api/mod/\<mod_id>/update
+### POST /api/mod/\<mod_id>/update
 
 Publishes an update to an existing mod. **Requires authentication**.
 
@@ -593,11 +592,11 @@ Publishes an update to an existing mod. **Requires authentication**.
 
 ## Games
 
-#### GET /api/kspversions
+### GET /api/kspversions
 
 This is deprecated. Use **/api/games** to find the ID of a game, then **/api/&lt;gameid&gt;/versions** to get its versions.
 
-#### GET /api/games
+### GET /api/games
 
 This will list the available games and their ids.
 
@@ -627,7 +626,7 @@ This will list the available games and their ids.
 </details>
 
 
-#### GET /api/\<game_id>/versions
+### GET /api/\<game_id>/versions
 
 This will list the available versions of a game.
 For KSP the response is the same as `/api/kspversions`
@@ -655,7 +654,7 @@ For KSP the response is the same as `/api/kspversions`
 </details>
 
 
-#### GET /api/\<game_id>/notifications
+### GET /api/\<game_id>/notifications
 
 Returns the notifications that can be enabled for mods from this game.
 
@@ -680,7 +679,7 @@ curl "https://spacedock.info/api/\<gameid>/notifications"
 </details>
 
 
-#### POST /api/download_counts
+### POST /api/download_counts
 
 This will return download counts for the specified mods.
 
