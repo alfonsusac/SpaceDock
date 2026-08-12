@@ -133,7 +133,7 @@ If `game_version_id` is present, `game_id` and `game_version` will be ignored.
 ```
 </details>
 
-
+<br />
 
 ### GET /api/browse/new
 
@@ -181,6 +181,7 @@ If `game_version_id` is present, `game_id` and `game_version` will be ignored.
 ```
 </details>
 
+<br />
 
 ### GET /api/browse/featured
 
@@ -224,6 +225,8 @@ curl "https://spacedock.info/api/browse/featured"
 ```
 </details>
 
+<br />
+
 ### GET /api/browse/top
 
 Gets the most popular mods on the site.
@@ -265,6 +268,7 @@ curl "https://spacedock.info/api/browse/top"
 ```
 </details>
 
+<br />
 
 ### GET /api/typeahead/mod
 
@@ -320,6 +324,7 @@ curl "https://spacedock.info/api/typeahead/mod?game_id=22409&query=Compe"
 ```
 </details>
 
+<br />
 
 
 ## Search
