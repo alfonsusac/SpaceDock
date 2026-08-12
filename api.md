@@ -55,7 +55,7 @@ curl -F username=SirCmpwn -F password=example -c ./cookies "https://spacedock.in
 <details><summary><i>Example Response</i></summary>
 
 ```json
-{ 
+{
   "error": false 
 }
 ```
@@ -81,7 +81,7 @@ You can browse the site without authentication.
 
 
 
-#### GET /api/browse
+#### `GET /api/browse`
 
 Gets mods sorted by selected conditions
 
@@ -139,9 +139,7 @@ If `game_version_id` is present, `game_id` and `game_version` will be ignored.
 
 
 
-#### GET /api/browse/new
-
-`GET /api/browse/new?page=<integer>`
+#### `GET /api/browse/new`
 
 Gets the newest mods on the site.
 
@@ -188,9 +186,7 @@ If `game_version_id` is present, `game_id` and `game_version` will be ignored.
 </details>
 
 
-#### GET /api/browse/featured
-
-`GET /api/browse/featured?page=<integer>`
+#### `GET /api/browse/featured`
 
 Gets the latest featured mods on the site.
 
@@ -232,9 +228,7 @@ curl "https://spacedock.info/api/browse/featured"
 ```
 </details>
 
-#### GET /api/browse/top
-
-`GET /api/browse/top?page=<integer>`
+#### `GET /api/browse/top`
 
 Gets the most popular mods on the site.
 
@@ -276,13 +270,67 @@ curl "https://spacedock.info/api/browse/top"
 </details>
 
 
+#### `GET /api/typeahead/mod`
+
+Endpoint used to provide typeahead functionality when searching a mod
+
+*Curl*
+
+```sh
+curl "https://spacedock.info/api/typeahead/mod?game_id=22409&query=Compe"
+```
+
+*Parameters (Search Params)*
+
+* `game_id`: Only return mods for this game, by internal database id
+* `query`: Search terms
+
+<details><summary><i>Example Response</i></summary>
+
+```json
+[
+  {
+    "name": "Compendium",
+    "id": 4074,
+    "game": "Kitten Space Agency",
+    "game_id": 22409,
+    "short_description": "Celestial body informational window, orbital line toggle management!",
+    "downloads": 892,
+    "followers": 0,
+    "author": "nanonestor",
+    "default_version_id": 24674,
+    "shared_authors": [],
+    "background": "https://spacedock.info/content/nanonestor_179255/Compendium/Compendium-1765528302.png",
+    "bg_offset_y": -817,
+    "license": "MIT",
+    "website": "https://github.com/meow-sci/Compendium",
+    "donations": "",
+    "source_code": "https://github.com/meow-sci/Compendium",
+    "url": "/mod/4074/Compendium",
+    "versions": [
+      {
+        "friendly_version": "0.9.10",
+        "game_version": "2026.8.5.5168",
+        "id": 24674,
+        "created": "2026-08-07T15:46:11.004784+00:00",
+        "download_path": "/mod/4074/Compendium/download/0.9.10",
+        "changelog": "- Updated to accommodate changed KSA code",
+        "downloads": 26
+      },
+      ...continue...
+    ]
+  }
+]
+```
+</details>
+
+
+
 ## Search
 
 You can search the site without authentication.
 
 #### GET /api/search/mod
-
-`GET /api/search/mod?query=<name>`
 
 Searches the site for mods.
 
@@ -325,8 +373,6 @@ curl "https://spacedock.info/api/search/mod?query=FAR"
 
 #### GET /api/search/user
 
-`GET /api/search/user?query=<name>`
-
 Searches the site for public users.
 
 *Curl*
@@ -360,9 +406,7 @@ curl "https://spacedock.info/api/search/user?query=sircmpwn"
 
 You can query the API for information on individual public users.
 
-#### GET /api/user/<username>
-
-`GET /api/user/<username>`
+#### GET /api/user/\<username>
 
 Returns information about a specific user.
 
@@ -408,9 +452,9 @@ You can query the API for information on a specific mod, a specific version, and
 so on. This could be useful, for example, to implement an update checker. You can
 also use the API to create new mods or update existing ones.
 
-#### GET /api/mod/<mod_id>
+#### GET /api/mod/\<mod_id>
 
-`GET /api/mod/<mod_id>`
+`GET /api/mod/\<mod_id>`
 
 Returns information about a specific mod.
 
@@ -449,9 +493,9 @@ curl "https://spacedock.info/api/mod/21"
 </details>
 
 
-#### GET /api/mod/<mod_id>/latest
+#### GET /api/mod/\<mod_id>/latest
 
-`GET /api/mod/<mod_id>/latest` 
+`GET /api/mod/\<mod_id>/latest` 
 
 <!-- TODO: Need to change this to get mod latest Version -->
 
@@ -519,7 +563,7 @@ This creates an unpublished mod. You must log into the actual site to publish
 your mod.
 
 
-#### POST /api/mod/<mod_id>/update
+#### POST /api/mod/\<mod_id>/update
 
 Publishes an update to an existing mod. **Requires authentication**.
 
@@ -586,14 +630,14 @@ This will list the available games and their ids.
 </details>
 
 
-#### GET /api/<game_id>/versions
+#### GET /api/\<game_id>/versions
 
 This will list the available versions of a game.
 For KSP the response is the same as `/api/kspversions`
 
 *Curl*
 ```sh
-    curl "https://spacedock.info/api/<gameid>/versions"
+    curl "https://spacedock.info/api/\<gameid>/versions"
 ```
 
 <details><summary><i>Example Response</i></summary>
@@ -614,13 +658,13 @@ For KSP the response is the same as `/api/kspversions`
 </details>
 
 
-#### GET /api/<game_id>/notifications
+#### GET /api/\<game_id>/notifications
 
 Returns the notifications that can be enabled for mods from this game.
 
 *Curl*
 ```sh
-curl "https://spacedock.info/api/<gameid>/notifications"
+curl "https://spacedock.info/api/\<gameid>/notifications"
 ```
 
 <details><summary><i>Example Response</i></summary>
