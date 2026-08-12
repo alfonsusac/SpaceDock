@@ -496,19 +496,25 @@ curl "https://spacedock.info/api/mod/21"
 ```
 </details>
 
+<details><summary><i>Errors</i></summary>
+
+| Code | Reason | 
+| --- | --- |
+| 404 | Mod not found. |
+| 401 | Mod not published. Authentication needed. |
+| 403 | Mod not published. Only owner can see it. |
+</details>
+
 <br />
 
-### GET /api/mod/\<mod_id>/latest
+### GET /api/mod/\<mod_id>/\<"latest" or version_id>
 
-`GET /api/mod/\<mod_id>/latest` 
-
-<!-- TODO: Need to change this to get mod latest Version -->
-
-Returns the latest version of a mod.
+Returns the specific version of a mod.
 
 *Curl*
 ```sh
 curl "https://spacedock.info/api/mod/21/latest"
+curl "https://spacedock.info/api/mod/21/12583"
 ```
 
 <details><summary><i>Example Response</i></summary>
@@ -524,6 +530,90 @@ curl "https://spacedock.info/api/mod/21/latest"
 ```
 </details>
 
+<details><summary><i>Errors</i></summary>
+
+| Code | Reason | 
+| --- | --- |
+| 404 | Mod not found. |
+| 403 | Not enough rights. |
+| 400 | Invalid verison. |
+| 403 | Version not found. |
+</details>
+
+<br />
+
+### GET /api/ksp-avc/<mod_id>
+
+Returns the KSP AVC friendly format for a specific mod.
+
+*Curl*
+
+```sh
+curl "https://spacedock.info/api/ksp-avc/21"
+```
+
+<details><summary><i>Example Response</i></summary>
+
+```json
+{
+  "friendly_version": "1.10",
+  "game_version": "1.12.3",
+  "id": 12583,
+  "created": "2019-10-16T23:38:07.228742+00:00",
+  "download_path": "/mod/21/BetterBurnTime/download/1.10",
+  "changelog": "* Update for KSP 1.8 compatibility.\r\n* Includes update to ModuleManager 4.1.0.\r\n",
+  "downloads": 244313
+}
+```
+</details>
+
+<details><summary><i>Errors</i></summary>
+
+| Code | Reason | 
+| --- | --- |
+| 404 | Mod not found. |
+| 403 | Not enough rights. |
+</details>
+
+<br />
+
+### POST /api/download_counts
+
+This will return download counts for the specified mods.
+
+*Curl*
+```sh
+    curl -d 'mod_id=1&mod_id=2&mod_id=3' https://spacedock.info/api/download_counts
+```
+
+<details><summary><i>Example Response</i></summary>
+
+```json
+{
+  "download_counts": [
+    {
+      "id": 1,
+      "downloads": 53
+    },
+    {
+      "id": 2,
+      "downloads": 2
+    },
+    {
+      "id": 3,
+      "downloads": 1
+    }
+  ]
+}
+```
+</details>
+
+<!-- MISSING: Update Mod BG -->
+<!-- MISSING: Grant Mod Access -->
+<!-- MISSING: Accept Mod Grant -->
+<!-- MISSING: Reject mod Grant -->
+<!-- MISSING: Set Mod Default Version -->
+<!-- MISSING: Update Mod Edit Version -->
 <br />
 
 ### POST /api/mod/create
@@ -545,22 +635,44 @@ Creates a new mod. **Requires authentication**.
 
 *Parameters (Form Data)*
 
-* `name`: Your new mod's name
-* `short-description`: Short description of your mod
+* `name`: Your new mod's name. Maximum character: 100
+* `short-description`: Short description of your mod. Maximum character: 1000
+* `description`: Full description of your mod [*optional*]
 * `version`: The latest friendly version of your mod
 * `game-short-name`: The short name of the game your mod is for. Alternatively specify the id with `game-id`.
 * `game-version`: The game version this is compatible with
-* `license`: Your mod's license
+* `license`: Your mod's license. Maximum character: 128
 * `zipball`: The actual mod's zip file
 * `notifications`: List of ids of notifications to enable (use **/api/&lt;gameid&gt;/notifications** to get available options)
+* `dztotalchunkcount`: Dropzone's chunk-upload fields. [*optional*]
+* `dzchunkindex`: Dropzone's chunk-upload fields. [*optional*]
+* `dzchunkbyteoffset`: Dropzone's chunk-upload fields. [*optional*]
+
 
 <details><summary><i>Example Response</i></summary>
 
+Status Code: 202
 ```json
 {
-  "url": "/mod/1234/Example Mod"
+  "url": "/mod/1234/Example Mod",
+  "id": 1234,
+  "name": "Example Mod"
 }
 ```
+</details>
+
+<details><summary><i>Errors</i></summary>
+
+| Code | Reason | 
+| --- | --- |
+| 403 | `You are not logged in.` |
+| 400 | `Malware detected in upload.` |
+| 400 | `<Pathname> is not a valid zip file.` |
+| 400 | Game version does not exist. |
+| 400 | Game does not exist. |
+| 400 | Fields exceed maximum permissible length. |
+| 400 | All fields are required. |
+| 403 | Only users with public profiles may create mods. |
 </details>
 
 *Notes*
@@ -588,25 +700,118 @@ Publishes an update to an existing mod. **Requires authentication**.
 *Parameters (Form Data)*
 
 * `version`: The friendly version number about to be created
-* `changelog`: Markdown changelog
+* `changelog`: Markdown changelog. Maximum 10000 characters.
 * `game-version`: The game version this is compatible with
 * `notify-followers`: If "yes", email followers about this update
 * `zipball`: The actual mod's zip file
+* `dztotalchunkcount`: Dropzone's chunk-upload fields. [*optional*]
+* `dzchunkindex`: Dropzone's chunk-upload fields. [*optional*]
+* `dzchunkbyteoffset`: Dropzone's chunk-upload fields. [*optional*]
 
-<!-- MISSING: Get Mod KSP AVC -->
-<!-- MISSING: Update Mod BG -->
-<!-- MISSING: Grant Mod Access -->
-<!-- MISSING: Accept Mod Grant -->
-<!-- MISSING: Reject mod Grant -->
-<!-- MISSING: Set Mod Default Version -->
-<!-- MISSING: Update Mod Edit Version -->
+<details><summary><i>Example Response</i></summary>
+
+Status Code: 202
+```json
+{
+  "url": "/mod/2124/Example Mod",
+  "id": 1234,
+}
+```
+</details>
+
+<details><summary><i>Errors</i></summary>
+
+| Code | Reason | 
+| --- | --- |
+| 403 | `You are not logged in.` |
+| 404 | Mod not found. |
+| 403 | Not enough rights. |
+| 400 | All fields are required. |
+| 400 | Game version does not exist. |
+| 400 | We already have this version. Did you mistype the version number? |
+| 400 | Changelog is \<number\> bytes, the limit is \<number\>! |
+| 400 | \<number\> \<number\>/\<number> is not a valid zip file. |
+| 400 | `Malware detected in upload.` |
+</details>
+
+<br/>
+
+### POST /api/mod/\<mod_id>/edit_version
+
+Edit the details of a specific version of a mod. **Requires authentication**.
+
+*Curl*
+```sh
+    curl -b ./cookies \
+        -F "version-id=11" \
+        -F "changelog=this is your changelog" \
+        "https://spacedock.info/api/mod/1234/edit_version"
+```
+
+*Parameters (Form Data)*
+
+* `version-id`: The id of the version.
+* `changelog`: Markdown changelog. Maximum 10000 characters. [*optional*]
+* `zipball`: The actual mod's zip file [*optional*]
+* `dztotalchunkcount`: Dropzone's chunk-upload fields. [*optional*]
+* `dzchunkindex`: Dropzone's chunk-upload fields. [*optional*]
+* `dzchunkbyteoffset`: Dropzone's chunk-upload fields. [*optional*]
+
+<details><summary><i>Example Response</i></summary>
+
+Status Code: 202
+```json
+{
+  "url": "/mod/2124/Example Mod",
+}
+```
+</details>
+
+<details><summary><i>Errors</i></summary>
+
+| Code | Reason | 
+| --- | --- |
+| 403 | `You are not logged in.` |
+| 404 | Mod not found. |
+| 403 | Not enough rights. |
+| 400 | All fields are required. |
+| 400 | Game version does not exist. |
+| 400 | We already have this version. Did you mistype the version number? |
+| 400 | Changelog is \<number\> bytes, the limit is \<number\>! |
+| 400 | \<number\> \<number\>/\<number> is not a valid zip file. |
+| 400 | `Malware detected in upload.` |
+</details>
+
 <br />
+
+### POST /api/mod/\<mod_id>/update-bg
+
+Update the background image of a mod. **Requires authentication**.
+
+*Curl*
+```sh
+    curl -b ./cookies \
+        -F "image=@ExampleImage.png" \
+        "https://spacedock.info/api/mod/1234/update-bg"
+```
+
+<details><summary><i>Example Response</i></summary>
+
+```json
+{
+  "path": "/mod/2124/Example Mod",
+}
+```
+</details>
+
+
 
 ## Games
 
 ### GET /api/kspversions
 
 This is deprecated. Use **/api/games** to find the ID of a game, then **/api/&lt;gameid&gt;/versions** to get its versions.
+
 <br />
 
 ### GET /api/games
@@ -647,7 +852,7 @@ For KSP the response is the same as `/api/kspversions`
 
 *Curl*
 ```sh
-    curl "https://spacedock.info/api/\<gameid>/versions"
+curl "https://spacedock.info/api/\<gameid>/versions"
 ```
 
 <details><summary><i>Example Response</i></summary>
@@ -665,6 +870,11 @@ For KSP the response is the same as `/api/kspversions`
   ...continued...
 ]
 ```
+</details>
+
+<details><summary><i>Errors</i></summary>
+
+* Returns 404 with empty list if no active game found
 </details>
 
 <br />
@@ -693,38 +903,10 @@ curl "https://spacedock.info/api/\<gameid>/notifications"
 ```
 </details>
 
-<br />
+<details><summary><i>Errors</i></summary>
 
-### POST /api/download_counts
-
-This will return download counts for the specified mods.
-
-*Curl*
-```sh
-    curl -d 'mod_id=1&mod_id=2&mod_id=3' https://spacedock.info/api/download_counts
-```
-
-<details><summary><i>Example Response</i></summary>
-
-```json
-{
-  "download_counts": [
-    {
-      "id": 1,
-      "downloads": 53
-    },
-    {
-      "id": 2,
-      "downloads": 2
-    },
-    {
-      "id": 3,
-      "downloads": 1
-    }
-  ]
-}
-```
+* Returns 404 with empty list if no active game found
 </details>
 
-
 <br />
+
